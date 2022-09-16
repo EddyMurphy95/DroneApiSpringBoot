@@ -14,8 +14,9 @@ public class Drone {
     private String model;
     @Column(name = "weight-limit", columnDefinition = "VARCHAR(5) NOT NULL")
     private BigInteger weight;
-    @Column(name = "battery-capacity", columnDefinition = "VARCHAR(5) NOT NULL")
+    @Column(name = "battery-capacity", columnDefinition = "VARCHAR(5) NOT NULL", precision = 3, scale = 2)
     private DecimalFormat batteryCapacity;
+    // IDLE, LOADING, LOADED, DELIVERING
     private String state;
 
     public Drone() {
