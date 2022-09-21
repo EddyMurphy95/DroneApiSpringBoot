@@ -12,17 +12,20 @@ public class Drone {
     @NotNull(message = "Serial Number Required!")
     @Column(name = "serial-number")
     private String serialNumber;
+
     @NotNull(message = "Model is Required!")
     @Column(name = "model")
     private String model;
+
     @NotNull(message = "Weight is Required!")
     @Max(value = 500, message = "Weight should not exceed 500 grams")
-    @Column(name = "weight")
     private BigInteger weight;// weight limit 500grams max
+
     @NotNull(message = "battery Capacity Number Required!")
-    @Column(name = "battery-capacity", precision = 3, scale = 2)
-    private BigDecimal batteryCapacity;
-    @Column(name = "state")
+    @Column(name = "battery-capacity")
+    @Max(value = 100, message = "Battery percentage can't be more than 100%")
+    private double batteryCapacity;
+
     @NotNull(message = "state Required!")
     private String state; // (IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING)
 
@@ -30,7 +33,7 @@ public class Drone {
 
     }
 
-    public Drone(String serialNumber, String model, BigInteger weight, BigDecimal batteryCapacity, String state) {
+    public Drone(String serialNumber, String model, BigInteger weight, double batteryCapacity, String state) {
         this.serialNumber = serialNumber;
         this.model = model;
         this.weight = weight;
@@ -62,11 +65,11 @@ public class Drone {
         this.weight = weight;
     }
 
-    public BigDecimal getBatteryCapacity() {
+    public double getBatteryCapacity() {
         return this.batteryCapacity;
     }
 
-    public void setBatteryCapacity(BigDecimal batteryCapacity) {
+    public void setBatteryCapacity(double batteryCapacity) {
         this.batteryCapacity = batteryCapacity;
     }
 
