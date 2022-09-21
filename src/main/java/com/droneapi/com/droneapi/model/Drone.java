@@ -1,29 +1,36 @@
 package com.droneapi.com.droneapi.model;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.text.DecimalFormat;
-
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 public class Drone {
 
     @Id
-    @Column(columnDefinition = "VARCHAR(100) NOT NULL")
+    @NotNull(message = "Serial Number Required!")
+    @Column(name = "serial-number")
     private String serialNumber;
+    @NotNull(message = "Model is Required!")
+    @Column(name = "model")
     private String model;
-    @Column(name = "weight-limit", columnDefinition = "VARCHAR(5) NOT NULL")
-    private BigInteger weight;
-    @Column(name = "battery-capacity", columnDefinition = "VARCHAR(5) NOT NULL", precision = 3, scale = 2)
-    private DecimalFormat batteryCapacity;
-    // IDLE, LOADING, LOADED, DELIVERING
-    private String state;
+    @NotNull(message = "Weight is Required!")
+    @Max(value = 500, message = "Weight should not exceed 500 grams")
+    @Column(name = "weight")
+    private BigInteger weight;// weight limit 500grams max
+    @NotNull(message = "battery Capacity Number Required!")
+    @Column(name = "battery-capacity", precision = 3, scale = 2)
+    private BigDecimal batteryCapacity;
+    @Column(name = "state")
+    @NotNull(message = "state Required!")
+    private String state; // (IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING)
 
     public Drone() {
+
     }
 
-    public Drone(String serialNumber, String model, BigInteger weight, DecimalFormat batteryCapacity, String state) {
-        super();
+    public Drone(String serialNumber, String model, BigInteger weight, BigDecimal batteryCapacity, String state) {
         this.serialNumber = serialNumber;
         this.model = model;
         this.weight = weight;
@@ -55,11 +62,11 @@ public class Drone {
         this.weight = weight;
     }
 
-    public DecimalFormat getBatteryCapacity() {
+    public BigDecimal getBatteryCapacity() {
         return this.batteryCapacity;
     }
 
-    public void setBatteryCapacity(DecimalFormat batteryCapacity) {
+    public void setBatteryCapacity(BigDecimal batteryCapacity) {
         this.batteryCapacity = batteryCapacity;
     }
 
@@ -69,42 +76,6 @@ public class Drone {
 
     public void setState(String state) {
         this.state = state;
-    }
-
-    public Drone serialNumber(String serialNumber) {
-        setSerialNumber(serialNumber);
-        return this;
-    }
-
-    public Drone model(String model) {
-        setModel(model);
-        return this;
-    }
-
-    public Drone weight(BigInteger weight) {
-        setWeight(weight);
-        return this;
-    }
-
-    public Drone batteryCapacity(DecimalFormat batteryCapacity) {
-        setBatteryCapacity(batteryCapacity);
-        return this;
-    }
-
-    public Drone state(String state) {
-        setState(state);
-        return this;
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-                " serialNumber='" + getSerialNumber() + "'" +
-                ", model='" + getModel() + "'" +
-                ", weight='" + getWeight() + "'" +
-                ", batteryCapacity='" + getBatteryCapacity() + "'" +
-                ", state='" + getState() + "'" +
-                "}";
     }
 
 }

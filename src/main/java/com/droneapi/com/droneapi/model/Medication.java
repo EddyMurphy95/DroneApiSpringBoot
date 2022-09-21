@@ -1,6 +1,5 @@
 package com.droneapi.com.droneapi.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -10,15 +9,9 @@ import jakarta.persistence.Table;
 public class Medication {
 
     @Id
-    @Column(name = "code", columnDefinition = "VARCHAR(20) ")
     private String code;
-
-    @Column(name = "name", columnDefinition = "VARCHAR(30)")
     private String name;
-
-    @Column(name = "weight", columnDefinition = "VARCHAR(20)")
     private double weight;
-
     private String image;
 
     public Medication() {
@@ -61,26 +54,6 @@ public class Medication {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public Medication code(String code) {
-        setCode(code);
-        return this;
-    }
-
-    public Medication name(String name) {
-        setName(name);
-        return this;
-    }
-
-    public Medication weight(double weight) {
-        setWeight(weight);
-        return this;
-    }
-
-    public Medication image(String image) {
-        setImage(image);
-        return this;
     }
 
     @Override
