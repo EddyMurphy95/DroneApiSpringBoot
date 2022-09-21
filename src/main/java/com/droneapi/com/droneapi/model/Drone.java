@@ -1,6 +1,5 @@
 package com.droneapi.com.droneapi.model;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -9,11 +8,11 @@ import jakarta.validation.constraints.*;
 public class Drone {
 
     @Id
-    @NotNull(message = "Serial Number Required!")
+    @NotEmpty(message = "Serial Number Required!")
     @Column(name = "serial-number")
     private String serialNumber;
 
-    @NotNull(message = "Model is Required!")
+    @NotEmpty(message = "Model is Required!")
     @Column(name = "model")
     private String model;
 
@@ -26,7 +25,7 @@ public class Drone {
     @Max(value = 100, message = "Battery percentage can't be more than 100%")
     private double batteryCapacity;
 
-    @NotNull(message = "state Required!")
+    @NotEmpty(message = "state Required!")
     private String state; // (IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING)
 
     public Drone() {
