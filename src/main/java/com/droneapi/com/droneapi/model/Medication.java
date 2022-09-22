@@ -1,17 +1,26 @@
 package com.droneapi.com.droneapi.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "medication")
 public class Medication {
 
     @Id
+    @NotEmpty(message = "Code Required!")
+    @Pattern(regexp = "^[0-9A-Z_-]*$")
     private String code;
+    @Column(columnDefinition = "VARCHAR(16) NOT NULL")
+    @Pattern(regexp = "^[0-9A-Z_-]*$")
     private String name;
+    @Column(columnDefinition = "VARCHAR(16) NOT NULL")
     private double weight;
+    @Column(columnDefinition = "VARCHAR(30) NOT NULL")
     private String image;
 
     public Medication() {

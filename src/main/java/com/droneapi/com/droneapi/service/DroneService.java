@@ -23,6 +23,7 @@ public class DroneService {
         mydrone.setWeight(droneRequest.getWeight());
         mydrone.setBatteryCapacity(droneRequest.getBatteryCapacity());
         mydrone.setState(droneRequest.getState());
+
         // save drone into database
         dronerepo.save(mydrone);
 

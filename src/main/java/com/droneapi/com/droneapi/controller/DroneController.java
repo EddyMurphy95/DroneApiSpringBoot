@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.droneapi.com.droneapi.model.Drone;
@@ -22,10 +23,9 @@ public class DroneController {
 
     // create an employee rest api
     @PostMapping("/register")
-    public ResponseEntity<ResponseAfterRegsiterationofDrone> registerDrone(@Valid @RequestBody Drone dronerequest) {
-
+    public ResponseEntity<ResponseAfterRegsiterationofDrone> registerDrone(
+            @Valid @RequestBody Drone dronerequest) {
         ResponseAfterRegsiterationofDrone newDrone = droneService.registerDrone(dronerequest);
-
         return new ResponseEntity<ResponseAfterRegsiterationofDrone>(newDrone, HttpStatus.CREATED);
     }
 }
