@@ -15,5 +15,5 @@ import jakarta.transaction.Transactional;
 public interface DroneRepository extends JpaRepository<Drone, String> {
 
     // Checks available drones with state = IDLE
-    List<Drone> findAllByState(@Param("state") String state); // using method
+    List<Drone> findAllByState(@Param("state") String state);
 }
