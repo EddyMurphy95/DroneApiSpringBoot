@@ -14,6 +14,10 @@ public class ErrorResponse {
 		this.timestamp = timestamp;
 	}
 
+	public ErrorResponse() {
+
+	}
+
 	private String result;
 	private String message;
 	private LocalDateTime timestamp;
