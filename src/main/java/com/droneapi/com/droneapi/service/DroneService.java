@@ -57,7 +57,8 @@ public class DroneService {
     public DroneAvailabilityResponse getavailableDrones() {
         String state = "IDLE";
         List<Drone> drones = dronerepo.findAllByState(state);
-        if (drones == null) {
+        if (drones.size() == 0) {
+
             return new DroneAvailabilityResponse("Failed", "No Idle Drones Found", LocalDateTime.now(), drones);
         }
         return new DroneAvailabilityResponse("Success", "Drone Successfully Retrieved", LocalDateTime.now(), drones);
